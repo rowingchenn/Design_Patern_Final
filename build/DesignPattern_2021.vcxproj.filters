@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Customer\ChatRoom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Customer\Customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Customer\CustomerMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Customer\Customers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Customer\Information.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Cart\Cart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Cart\CartCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Cart\CartInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Welcome\welcome.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\AC_ADSystem\AcVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\AC_ADSystem\ActivitySystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\AC_ADSystem\AdVisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\AC_ADSystem\AdvertisingSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\AC_ADSystem\Facade.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\AC_ADSystem\Interpreter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Commodity\Commodity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Commodity\CommodityFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Commodity\CommodityInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Order\OrderInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Order\order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Shop\shop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Shop\shopFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Shop\shopInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\ChainOfResponsibility\ChainOfResponsibility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{459E4FA6-E64B-35E8-8A7F-5E36DC47FFB9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,6 +1,4 @@
-//
-// Created by liruijie666 on 2021/10/30.
-//
+// Created by xzw on 2023/12/25.
 #include <utility>
 #include <vector>
 #include <cstdlib>
@@ -10,9 +8,7 @@
 #define NUM 90
 
 using namespace std;
-/*
- * 设计模式 - 多例模式 Multiton
- */
+//多例模式 Multiton
 void CommodityInterface::Initialize(shopInterface &shopInterface) {
     string init_names[NUM] = {
             "熟食", "水果", "蔬菜", "本地特产", "进口食品", "面包", "蛋糕", "泡面", "饼干", "干果",

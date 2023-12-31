@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\软件设计模式\设计模式 参考\汪明杰 DesignPattern-2021-main\build\CMakeFiles\c0e98dafa5303c50ff51e270752d554d\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B25125CB-8867-3BA5-9E79-6DF36C94E7B0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

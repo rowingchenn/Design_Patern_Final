@@ -1,6 +1,4 @@
-//
-// Created by liruijie666 on 2021/10/30.
-//
+// Created by xzw on 2023/12/25.
 
 #ifndef DESIGNPATTERN_2021_COMMODITYFACTORY_H
 #define DESIGNPATTERN_2021_COMMODITYFACTORY_H
@@ -17,4 +15,4 @@ public:
     CommodityInformation * getSingleCommodity(int ID, string name, int price, int shopID, int amount);
 };
 
-#endif //DESIGNPATTERN_2021_COMMODITYFACTORY_H
+#endif 

@@ -38,27 +38,27 @@ public:
 
 class Order { //订单类
 private:
-    string orderid;//订单id
-    int amount; //订单数量
-    map<CommodityInformation *, int> items;//订单内容
-    float Price = 0.0f; //订单价格
-    State *m_pState; //订单状态的指针
-    int Customerid; //用户id
+    string orderid;//订单识别号
+    int amount; //订单条目数量
+    map<CommodityInformation *, int> items;//订单内容(订单项)
+    float Price = 0.0f; //订单总价格
+    State *m_pState; //订单状态指针
+    int Customerid; //订单用户id
 public:
     Order(int customerID, map<CommodityInformation *, int> Items, float price);//构造函数
 
-    int getAmount() const { return amount; }//获得当前订单数量
+    int getAmount() const { return amount; }//获得当前订单条目数量
 
     const map<CommodityInformation *, int> &getItems() const { return items; }//获得当前订单内容
 
     string getID() const { return orderid; }//获得当前订单id
 
-    int getcustomerid() { return Customerid; }//获得该订单的用户id
+    int getcustomerid() { return Customerid; }//获得当前订单用户id
 
-    void Request();//订单状态
+    void Request();//打印订单状态
 
     int getPayState() { return m_pState->value(); }
 
-    void pay();//支付
+    void pay();//支付（改变订单状态）
 };
-#endif 
+#endif //SOFTWAREARC_ORDER_H
