@@ -181,23 +181,25 @@ public:
 };
 
 /*
- * 以下为访问者模式
- * 通过访问者模式，可以访问类中的数据或调用类中的方法而无须直接对对象进行操作。
- * infoVisitor: 展示店铺信息所用的Visitor
- * filterVisitor: 根据ShopRemark中的Score和过滤器模式Filter Mode来过滤店铺的Visitor
+ * 以下为访问者模式 Visitor Pattern
+ * 通过访问者模式，可以在不改变对象结构的前提下，对对象中的元素进行新的操作。
  */
+
+//抽象访问者
 class Visitor {
 public:
     virtual void visit(Shop *shop) = 0;
 };
-// 输出信息的子类visitor
+
+//具体访问者，展示店铺信息
 class infoVisitor : public Visitor {
 public:
     void visit(Shop *shop) {
         shop->showShopInformation();
     }
 };
-// 过滤商店输出信息的子类visitor
+
+//具体访问者，展示过滤后的店铺信息
 class filterVisitor : public Visitor {
 public:
     void visit(Shop *shop) {
@@ -206,21 +208,23 @@ public:
 };
 
 /*
- * 以下为模板方法 Template Method
- * 子类仅会根据用户所输入的信息来从Shop基类派生
- * 所有派生的子类均在下文中进行声明，在实际进行使用的时候会根据类型来生成店铺。
- * 每个子类包含3个函数：
- *      showShopInformation(): 输出店铺的详细信息
- *      accept(): 与访问者模式Visitor共同使用，用来执行参数为Visitor时其中的调用函数
- *      构造函数：生成对应的派生子类
- * 店铺类型: food, drink, digital, book, daily, furniture, clothes, stationery, sports, null.
+  以下为模板方法 Template Method
+  是一种行为型设计模式，用于定义一个算法的骨架，将算法中的某些步骤延迟到子类中实现。
+  它通过将不变的部分封装在父类中，将可变的部分留给子类来实现，从而实现代码的复用和扩展。
+  子类仅会根据用户所输入的信息来从Shop基类派生
+  所有派生的子类均在下文中进行声明，在实际进行使用的时候会根据类型来生成店铺。
+  每个子类包含3个函数：
+       showShopInformation(): 输出店铺的详细信息
+       accept(): 与访问者模式Visitor共同使用，用来执行参数为Visitor时其中的调用函数
+       构造函数：生成对应的派生子类
+  店铺类型: restaurant, drinks, digital, books, grocery, furniture, clothes, stationery, sportss, null.
  */
-// foodShop子类与构造函数
-class foodShop : public Shop {
+// restaurant Shop子类与构造函数
+class restaurantShop : public Shop {
 public:
     void accept(Visitor &v);
 
-    foodShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
+    restaurantShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
              double shopScore, const list<ShopRemark *> &shopRemarks, const map<CommodityInformation *, int> &itemList);
 };
 
@@ -234,12 +238,12 @@ public:
                 const map<CommodityInformation *, int> &itemList);
 };
 
-// drinkShop子类与构造函数
-class drinkShop : public Shop {
+// drinksShop子类与构造函数
+class drinksShop : public Shop {
 public:
     void accept(Visitor &v);
 
-    drinkShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
+    drinksShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
               double shopScore, const list<ShopRemark *> &shopRemarks,
               const map<CommodityInformation *, int> &itemList);
 };
@@ -255,23 +259,23 @@ public:
                 const map<CommodityInformation *, int> &itemList);
 };
 
-// bookShop子类与构造函数
-class bookShop : public Shop {
+// booksShop子类与构造函数
+class booksShop : public Shop {
 public:
 
     void accept(Visitor &v);
 
-    bookShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
+    booksShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
              double shopScore, const list<ShopRemark *> &shopRemarks, const map<CommodityInformation *, int> &itemList);
 };
 
-// dailyShop子类与构造函数
-class dailyShop : public Shop {
+// groceryShop子类与构造函数
+class groceryShop : public Shop {
 public:
 
     void accept(Visitor &v);
 
-    dailyShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
+    groceryShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
               double shopScore, const list<ShopRemark *> &shopRemarks,
               const map<CommodityInformation *, int> &itemList);
 };
@@ -298,24 +302,27 @@ public:
                    const map<CommodityInformation *, int> &itemList);
 };
 
-// sportShop子类与构造函数
-class sportShop : public Shop {
+// sportsShop子类与构造函数
+class sportsShop : public Shop {
 public:
 
     void accept(Visitor &v);
 
-    sportShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
+    sportsShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
               double shopScore, const list<ShopRemark *> &shopRemarks,
               const map<CommodityInformation *, int> &itemList);
 };
 
-/*
- * 设计模式-空项目模式 Null Object Mode
- * 实际使用中，用户很有可能会忘记输入参数，所以可能给函数传空值或null值
- * 为了程序健壮性和功能完整性，可以使用空项目模式：
- *      在函数运行中预先对参数为空或null做判断，如果为真则也生成一个对象，但是对象中的值都是没有意义的值。而非给用户只输出错误信息。
- *      这样做无论什么情况都可以按照生成对象的标准化来处理。
- */
+/* 设计模式-空项目模式 Null Object Mode
+ 主要思想是在程序中使用一个“空对象”来替代空值。
+ 通过使用空对象模式，程序可以在处理空值时不会出现异常或错误，并且可以保持程序的健壮性和功能完整性。
+ 当程序检测到参数为空或null时，可以创建一个空对象并将其作为参数传递给函数，空对象中的值都是没有意义的值，
+ 但程序可以按照生成对象的标准化来处理。
+ 使用空对象模式的好处在于，它可以减少代码中的if-else语句，使代码更加简洁和易于维护。
+ 同时，它还可以让程序更加灵活，因为空对象可以模拟任何其他对象，从而使程序更容易扩展和修改。
+ 在函数运行中预先对参数为空或null做判断，如果为真则也生成一个对象，但是对象中的值都是没有意义的值。而非给用户只输出错误信息。
+  这样做无论什么情况都可以按照生成对象的标准化来处理。
+  */
 // nullShop与构造函数
 class nullShop : public Shop {
 public:
@@ -327,23 +334,24 @@ public:
 };
 
 /*
- * 设计模式 - 代理模式 Proxy Mode
- * 用一个对象包含一个同等的对象，即可以包含的对象为代理，对被包含的对象进行操作。
- * 代理对象拥有被包含对象所有的操作和属性，还额外包含了被包含对象的属性。
- * 对代理对象进行的操作可以等效于直接对包含对象进行操作，此处操作为输出店铺的信息。
+ * 设计模式-代理模式 Proxy Mode
+ * 通过创建一个代理对象来控制对原始对象的访问。
+ * 对代理对象进行的操作可以等效于直接对被代理对象进行操作。
  */
-// proxyShop与构造函数
+//代理对象
 class proxyShop : public Shop {
 private:
     Shop *shop;
 public:
-    void accept(Visitor &v);
-
     proxyShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
-              double shopScore, const list<ShopRemark *> &shopRemarks, const map<CommodityInformation *, int> &itemList,
+              double shopScore, const list<ShopRemark *> &shopRemarks, 
+              const map<CommodityInformation *, int> &itemList,
               Shop *shop);
 
-    void display();// 展示商店的函数
+    void accept(Visitor &v);
+
+    //展示商店
+    void display();
 };
 
 // 商店装饰器基类

@@ -1,80 +1,82 @@
 #include "shopInterface.h"
 #include <string>
 #include <ctime>
-#include"../Customer/Customers.h"
-#include"../Customer/Customer.h"
+#include "../Customer/Customers.h"
+#include "../Customer/Customer.h"
+#include "shop.h"
 
 typedef Shop *SpShop;
 /*
  * 预先声明Visitor以供后续使用，因为派生类也在这里定义，无法同时定义和声明，所以在此预先声明
  */
-infoVisitor infoVisitor;
-filterVisitor filterVisitor;
+infoVisitor infomationVisitor;
+filterVisitor filteredVisitor;
 
+
+/* 设计模式-空项目模式 Null Object Mode
+ 主要思想是在程序中使用一个“空对象”来替代空值。
+ 通过使用空对象模式，程序可以在处理空值时不会出现异常或错误，并且可以保持程序的健壮性和功能完整性。
+ 当程序检测到参数为空或null时，可以创建一个空对象并将其作为参数传递给函数，空对象中的值都是没有意义的值，
+ 但程序可以按照生成对象的标准化来处理。
+ 使用空对象模式的好处在于，它可以减少代码中的if-else语句，使代码更加简洁和易于维护。
+ 同时，它还可以让程序更加灵活，因为空对象可以模拟任何其他对象，从而使程序更容易扩展和修改。
+ 在函数运行中预先对参数为空或null做判断，如果为真则也生成一个对象，但是对象中的值都是没有意义的值。而非给用户只输出错误信息。
+  这样做无论什么情况都可以按照生成对象的标准化来处理。*/
 
 /*
- * 设计模式-空项目模式 Null Object Mode
- * 实际使用中，用户很有可能会忘记输入参数，所以可能给函数传空值或null值
- * 为了程序健壮性和功能完整性，可以使用空项目模式：
- *      在函数运行中预先对参数为空或null做判断，如果为真则也生成一个对象，但是对象中的值都是没有意义的值。而非给用户只输出错误信息。
- *      这样做无论什么情况都可以按照生成对象的标准化来处理。
- */
-
-/*
- * 设计模式 - 代理模式 Proxy Mode
- * 用一个对象包含一个同等的对象，即可以包含的对象为代理，对被包含的对象进行操作。
- * 代理对象拥有被包含对象所有的操作和属性，还额外包含了被包含对象的属性。
- * 对代理对象进行的操作可以等效于直接对包含对象进行操作，此处操作为输出店铺的信息。
+ * 设计模式-代理模式 Proxy Mode
+ * 通过创建一个代理对象来控制对原始对象的访问。
+ * 对代理对象进行的操作可以等效于直接对被代理对象进行操作。
  */
 
 // 其中包含生成空对象和代理对象的对应操作
 Shop *ShopFactory::createShop(string type) {
     if (type == "")
-        return new nullShop("unknown", rand() % 10000 + 10, "unknown", "2021-01-01", 0, 0, list<ShopRemark *>(),
+        return new nullShop("unknown", rand() % 10000 + 10, "unknown", "2023-12-28", 0, 0, list<ShopRemark *>(),
                             map<CommodityInformation *, int>());
 
-    else if (type == "food")
-        return new foodShop("newFoodshop", rand() % 10000 + 10, "food", "2021-01-01", 0, 0, list<ShopRemark *>(),
+    else if (type == "restaurant")
+        return new restaurantShop("newrestaurantshop", rand() % 10000 + 10, "restaurant", "2023-12-28", 0, 0, list<ShopRemark *>(),
                             map<CommodityInformation *, int>());
 
-    else if (type == "drink")
-        return new drinkShop("newDrinkshop", rand() % 10000 + 10, "drink", "2021-01-01", 0, 0, list<ShopRemark *>(),
+    else if (type == "drinks")
+        return new drinksShop("newdrinksshop", rand() % 10000 + 10, "drinks", "2023-12-28", 0, 0, list<ShopRemark *>(),
                              map<CommodityInformation *, int>());
 
     else if (type == "digital")
-        return new digitalShop("newDigitalshop", rand() % 10000 + 10, "digital", "2021-01-01", 0, 0,
+        return new digitalShop("newDigitalshop", rand() % 10000 + 10, "digital", "2023-12-28", 0, 0,
                                list<ShopRemark *>(),
                                map<CommodityInformation *, int>());
 
-    else if (type == "book")
-        return new bookShop("newBookshop", rand() % 10000 + 10, "book", "2021-01-01", 0, 0, list<ShopRemark *>(),
+    else if (type == "books")
+        return new booksShop("newbooksshop", rand() % 10000 + 10, "books", "2023-12-28", 0, 0, list<ShopRemark *>(),
                             map<CommodityInformation *, int>());
 
-    else if (type == "daily")
-        return new dailyShop("newDailyshop", rand() % 10000 + 10, "daily", "2021-01-01", 0, 0, list<ShopRemark *>(),
+    else if (type == "grocery")
+        return new groceryShop("newgroceryshop", rand() % 10000 + 10, "grocery", "2023-12-28", 0, 0, list<ShopRemark *>(),
                              map<CommodityInformation *, int>());
 
     else if (type == "furniture")
-        return new furnitureShop("newFurnitureshop", rand() % 10000 + 10, "furniture", "2021-01-01", 0, 0,
+        return new furnitureShop("newFurnitureshop", rand() % 10000 + 10, "furniture", "2023-12-28", 0, 0,
                                  list<ShopRemark *>(),
                                  map<CommodityInformation *, int>());
 
     else if (type == "clothes")
-        return new clothesShop("newClothesshop", rand() % 10000 + 10, "clothes", "2021-01-01", 0, 0,
+        return new clothesShop("newClothesshop", rand() % 10000 + 10, "clothes", "2023-12-28", 0, 0,
                                list<ShopRemark *>(),
                                map<CommodityInformation *, int>());
 
     else if (type == "stationery")
-        return new stationeryShop("newStationeryshop", rand() % 10000 + 10, "stationery", "2021-01-01", 0, 0,
+        return new stationeryShop("newStationeryshop", rand() % 10000 + 10, "stationery", "2023-12-28", 0, 0,
                                   list<ShopRemark *>(),
                                   map<CommodityInformation *, int>());
 
-    else if (type == "sport")
-        return new sportShop("newSportshop", rand() % 10000 + 10, "sport", "2021-01-01", 0, 0, list<ShopRemark *>(),
+    else if (type == "sports")
+        return new sportsShop("newsportsshop", rand() % 10000 + 10, "sports", "2023-12-28", 0, 0, list<ShopRemark *>(),
                              map<CommodityInformation *, int>());
 
     else if (type == "proxy")
-        return new proxyShop("unknown", rand() % 10000 + 10, "unknown", "2021-01-01", 0, 0, list<ShopRemark *>(),
+        return new proxyShop("unknown", rand() % 10000 + 10, "unknown", "2023-12-28", 0, 0, list<ShopRemark *>(),
                              map<CommodityInformation *, int>(), nullptr);
 
     //非上述情况时，制造不出有意义的值，所以停止制造即可。
@@ -83,42 +85,55 @@ Shop *ShopFactory::createShop(string type) {
 
 /*
  * 设计模式：原型模式 Prototype
- * 因为商店是初始化的，不需要大规模、频繁的变化，所以可以使用原型模式以完成浅拷贝
- * 现在原型模式自带的商店缓存中加入所有的已有商店，然后在实际初始化的时候直接使用已有的商店即可。
- * 确保已有的商店都是可以找到的，找不到返回空指针nullptr即可。
+ * 因为商店接近初始化、高静态、低动态，不需要大规模、频繁的变化，使得原型模式发挥以完成商店模态的浅拷贝
+ * 先在商店数据缓存库中加入所有的已有商店，然后在实际初始化的时候直接使用已有的商店。
+ * 确保已有的商店都是可以找到的，找不到返回空指针nullptr。
  */
 void shopCache::loadCache() {
-    ShopRemark *defaultRemark = new ShopRemark("2021-01-01", "Administrator", "Good.", 5);
+        ShopRemark *defaultRemark = new ShopRemark("2021-01-01", "Administrator", "Good.", 5);
     list<ShopRemark *> defaultRemarkList;
+
     defaultRemarkList.push_back(defaultRemark);
+
     map<CommodityInformation *, int> defaultGoodsList;
-    Shop *shop1 = new foodShop("芜湖肉蛋葱鸡专营店", 1, "food", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
+
+    Shop *shop0 = new nullShop("同济空商店", 0, "", "", 0, 0, defaultRemarkList, defaultGoodsList);
+    _shopMap[shop0] = 0;
+
+    Shop *shop1 = new restaurantShop("同济餐饮熟食店", 1, "restaurant", "2003-09-29", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop1] = 1;
-    Shop *shop2 = new drinkShop("芜湖美汁汁儿专营店", 2, "drink", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
+    
+    Shop *shop2 = new drinksShop("同济小汁饮品店", 2, "drinks", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop2] = 2;
-    Shop *shop3 = new digitalShop("芜湖外设专营店", 3, "digital", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
+
+    Shop *shop3 = new digitalShop("同济软件电子专营店", 3, "digital", "2008-09-20", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop3] = 3;
-    Shop *shop4 = new bookShop("芜湖杀人书专营店", 4, "book", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
+
+    Shop *shop4 = new booksShop("同济图书专卖店", 4, "books", "2021-11-10", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop4] = 4;
-    Shop *shop5 = new dailyShop("芜湖日用品专营店", 5, "daily", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
+
+    Shop *shop5 = new groceryShop("同济鲜德宝日用品店", 5, "grocery", "2023-12-15", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop5] = 5;
-    Shop *shop6 = new furnitureShop("芜湖厨具专营店", 6, "furniture", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
+
+    Shop *shop6 = new furnitureShop("嘉实家具购置店", 6, "furniture", "2013-09-30", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop6] = 6;
-    Shop *shop7 = new clothesShop("芜湖发病棉袄专营店", 7, "clothes", "2004-12-01", 0, 0, defaultRemarkList, defaultGoodsList);
+
+    Shop *shop7 = new clothesShop("同济冬天不怕冷服装店", 7, "clothes", "2004-12-01", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop7] = 7;
-    Shop *shop8 = new stationeryShop("芜湖文具专营店", 8, "stationery", "2013-09-18", 0, 0, defaultRemarkList,
+
+    Shop *shop8 = new stationeryShop("同济学子文具店", 8, "stationery", "2016-04-28", 0, 0, defaultRemarkList,
                                      defaultGoodsList);
     _shopMap[shop8] = 8;
-    Shop *shop9 = new sportShop("芜湖运动设备专营店", 9, "sport", "2013-09-18", 0, 0, defaultRemarkList, defaultGoodsList);
+
+    Shop *shop9 = new sportsShop("同济体育（嘉定体育馆分店）", 9, "sports", "2020-12-26", 0, 0, defaultRemarkList, defaultGoodsList);
     _shopMap[shop9] = 9;
-    Shop *shop0 = new nullShop("芜湖空商店", 0, "", "", 0, 0, defaultRemarkList, defaultGoodsList);
-    _shopMap[shop0] = 0;
-    Shop *shop10 = new AddStarShopDecorator("芜湖装饰器高分空商店", 10, "", "", 0, 10, defaultRemarkList, defaultGoodsList,
+
+    Shop *shop10 = new AddStarShopDecorator("同济装饰器控分空商店", 10, "", "", 0, 10, defaultRemarkList, defaultGoodsList,
                                             new nullShop("", 0, "", "", 0, 0, defaultRemarkList, defaultGoodsList));
     _shopMap[shop10] = 10;
 }
 
-// 原型模式的寻找商店
+// 寻找商店进行复制，用于原型模式
 Shop *shopCache::cloneShop(int shopID) {
     for (auto _map:_shopMap) {
         if (_map.second == shopID)
@@ -142,7 +157,7 @@ Shop *shopInterface::createShop(string type) {
  */
 void shopInterface::showAllShops() {
     for (auto _shop:_shopList) {
-        filterVisitor.visit(_shop);
+        filteredVisitor.visit(_shop);
     }
 }
 
@@ -153,7 +168,7 @@ void shopInterface::showAllShops() {
 void shopInterface::checkShop(int ID) {
     for (auto _shop:_shopList) {
         if (_shop->getShopId() == ID) {
-            infoVisitor.visit(_shop);
+            infomationVisitor.visit(_shop);
             return;
         }
     }
@@ -226,19 +241,19 @@ void shopInterface::filterShopByScore() {
     // 结果集处理到位以后，输出对应的店铺即可，输出仍然有Visitor模式，不影响数据和操作
     cout << "高分店铺: " << shoplistHigh.size() << endl;
     for (auto _shop:shoplistHigh) {
-        filterVisitor.visit(_shop);
+        filteredVisitor.visit(_shop);
     }
     cout << endl;
 
     cout << "中分店铺: " << shoplistMid.size() << endl;
     for (auto _shop:shoplistMid) {
-        filterVisitor.visit(_shop);
+        filteredVisitor.visit(_shop);
     }
     cout << endl;
 
     cout << "低分店铺: " << shoplistLow.size() << endl;
     for (auto _shop:shoplistLow) {
-        filterVisitor.visit(_shop);
+        filteredVisitor.visit(_shop);
     }
     cout << endl;
 }

@@ -1,10 +1,6 @@
-
 #include "shopFilter.h"
 /*
- * 过滤器模式中3个盛放过滤结果的类的筛选标准和函数的具体实现。
- *
- * getTotalRemarkScore()是收集店铺评价列表中评分的平均值
- *      对每个标准，只要把店铺列表中所有的店铺都过一遍即可。
+ * 过滤器模式中3个具体过滤器类的函数的具体实现
  */
 list<Shop *> HighShopFilter::selectShop(list<Shop *> ShopList) {
     list<Shop *> HighShopList;

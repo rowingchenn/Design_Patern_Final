@@ -23,21 +23,21 @@ void Shop::showShopInformation() {
  * 以下是各派生类的accept函数以及构造函数的具体实现
  * 按.h文件所述共有10个，内容基本与其中相同，后续不再赘述
  */
-void foodShop::accept(Visitor &v) {
+void restaurantShop::accept(Visitor &v) {
     return v.visit(this);
 }
 
-foodShop::foodShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
+restaurantShop::restaurantShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
                    double shopScore, const list<ShopRemark *> &shopRemarks,
                    const map<CommodityInformation *, int> &itemList) : Shop(
         shopName, shopId, shopType, shopDate, shopStorage, shopScore, shopRemarks, itemList) {}
 
 
-void drinkShop::accept(Visitor &v) {
+void drinksShop::accept(Visitor &v) {
     return v.visit(this);
 }
 
-drinkShop::drinkShop(const string &shopName, int shopId, const string &shopType, const string &shopDate,
+drinksShop::drinksShop(const string &shopName, int shopId, const string &shopType, const string &shopDate,
                      int shopStorage, double shopScore, const list<ShopRemark *> &shopRemarks,
                      const map<CommodityInformation *, int> &itemList) : Shop(shopName, shopId, shopType, shopDate,
                                                                               shopStorage,
@@ -55,21 +55,21 @@ digitalShop::digitalShop(const string &shopName, int shopId, const string &shopT
                                                                                   shopScore, shopRemarks, itemList) {}
 
 
-void bookShop::accept(Visitor &v) {
+void booksShop::accept(Visitor &v) {
     return v.visit(this);
 }
 
-bookShop::bookShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
+booksShop::booksShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
                    double shopScore, const list<ShopRemark *> &shopRemarks,
                    const map<CommodityInformation *, int> &itemList) : Shop(
         shopName, shopId, shopType, shopDate, shopStorage, shopScore, shopRemarks, itemList) {}
 
 
-void dailyShop::accept(Visitor &v) {
+void groceryShop::accept(Visitor &v) {
     return v.visit(this);
 }
 
-dailyShop::dailyShop(const string &shopName, int shopId, const string &shopType, const string &shopDate,
+groceryShop::groceryShop(const string &shopName, int shopId, const string &shopType, const string &shopDate,
                      int shopStorage, double shopScore, const list<ShopRemark *> &shopRemarks,
                      const map<CommodityInformation *, int> &itemList) : Shop(shopName, shopId, shopType, shopDate,
                                                                               shopStorage,
@@ -112,11 +112,11 @@ stationeryShop::stationeryShop(const string &shopName, int shopId, const string 
                                                                                         itemList) {}
 
 
-void sportShop::accept(Visitor &v) {
+void sportsShop::accept(Visitor &v) {
     return v.visit(this);
 }
 
-sportShop::sportShop(const string &shopName, int shopId, const string &shopType, const string &shopDate,
+sportsShop::sportsShop(const string &shopName, int shopId, const string &shopType, const string &shopDate,
                      int shopStorage, double shopScore, const list<ShopRemark *> &shopRemarks,
                      const map<CommodityInformation *, int> &itemList) : Shop(shopName, shopId, shopType, shopDate,
                                                                               shopStorage,
@@ -127,6 +127,7 @@ void nullShop::accept(Visitor &v) {
     return v.visit(this);
 }
 
+//初始化nullShop对象的属性。接收一系列参数，包括店铺名称、店铺ID、店铺类型、店铺日期、店铺库存、店铺评分、店铺备注列表和商品清单等。
 nullShop::nullShop(const string &shopName, int shopId, const string &shopType, const string &shopDate, int shopStorage,
                    double shopScore, const list<ShopRemark *> &shopRemarks,
                    const map<CommodityInformation *, int> &itemList) : Shop(
@@ -147,7 +148,7 @@ proxyShop::proxyShop(const string &shopName, int shopId, const string &shopType,
 void proxyShop::display() {
     // 创建代理对象
     if (shop == nullptr) {
-        shop = new nullShop("unknown", rand() % 10000 + 10, "unknown", "2021-01-01", 0, 0, list<ShopRemark *>(),
+        shop = new nullShop("unknown", rand() % 10000 + 10, "unknown", "2023-12-28", 0, 0, list<ShopRemark *>(),
                             map<CommodityInformation *, int>());
     }
     shop->showShopInformation();
@@ -155,16 +156,11 @@ void proxyShop::display() {
 
 shopDecorator::shopDecorator(const string &shopName, int shopId, const string &shopType, const string &shopDate,
                              int shopStorage, double shopScore, const list<ShopRemark *> &shopRemarks,
-                             const map<CommodityInformation *, int> &itemList, Shop *decoratedShop) : Shop(shopName,
-                                                                                                           shopId,
-                                                                                                           shopType,
-                                                                                                           shopDate,
-                                                                                                           shopStorage,
-                                                                                                           shopScore,
-                                                                                                           shopRemarks,
-                                                                                                           itemList),
-                                                                                                      decoratedShop(
-                                                                                                              decoratedShop) {}
+                             const map<CommodityInformation *, int> &itemList, Shop *decoratedShop) 
+                               :Shop(shopName,shopId,shopType,shopDate,
+                                    shopStorage,shopScore,shopRemarks,
+                                    itemList),
+                                decoratedShop(decoratedShop) {}
 
 void shopDecorator::accept(Visitor &v) {
     return v.visit(this);
@@ -174,7 +170,8 @@ AddStarShopDecorator::AddStarShopDecorator(const string &shopName, int shopId, c
                                            const string &shopDate, int shopStorage, double shopScore,
                                            const list<ShopRemark *> &shopRemarks,
                                            const map<CommodityInformation *, int> &itemList, Shop *decoratedShop)
-                                           : shopDecorator(shopName, shopId, shopType, shopDate, shopStorage, shopScore, shopRemarks, itemList,
+                                           : shopDecorator(shopName, shopId, shopType, shopDate, 
+                                                           shopStorage, shopScore, shopRemarks, itemList,
                                                            decoratedShop) {}
 
 void AddStarShopDecorator::accept(Visitor &v) {

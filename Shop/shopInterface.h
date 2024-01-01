@@ -14,21 +14,32 @@ using namespace std;
 #include "../Welcome/welcome.h"
 #include "../Customer/Customer.h"
 #include "../Commodity/Commodity.h"
-/*
- * 设计模式-抽象工厂模式 Abstract Factory Mode
- * 抽象工厂是比工厂更高级的存在，从面向对象的角度来说工厂继承了抽象工厂，是抽象工厂的派生子类和具体实现。
- * 所以抽象工厂设置为所有工厂的基类，获取对象的函数声明为虚函数，具体使用工厂时从抽象工厂中派生。
- */
+
+/* 抽象工厂模式（Abstract Factory Pattern）
+ 提供了一种方式来创建一系列相关或依赖对象的家族，而无需指定具体的类。
+ 在抽象工厂模式中，抽象工厂作为所有工厂的基类，负责定义创建对象的接口，而具体的工厂则派生自抽象工厂，实现了创建具体对象的方法。
+
+ 抽象工厂模式通过将具体的类实例化操作委托给工厂类，使得客户端代码与具体类解耦。
+ 客户端只需要与抽象工厂及其创建接口进行交互，而不需要直接调用具体的类。
+ 这样，当需要更换具体实现时，只需要更改具体工厂的实例，而不需要修改客户端代码。
+
+ 抽象工厂是比工厂更高级的存在，从面向对象的角度来说工厂继承了抽象工厂，是抽象工厂的派生子类和具体实现。
+
+ 所以抽象工厂设置为所有工厂的基类，获取对象的函数声明为虚函数，具体使用工厂时从抽象工厂中派生。
+*/
 class AbstractFactory {
 public:
     virtual Shop *createShop(string type) = 0;
 };
+/* 工厂模式（Factory Pattern）
+ 用于根据特定的条件或参数创建对象。它通过将对象的创建逻辑封装在一个工厂类中，使得客户端代码与具体对象的实例化过程解耦。
+ 在工厂模式中，通常会定义一个抽象工厂接口或基类，其中包含用于创建对象的方法。
+ 具体的工厂类会实现这个接口或继承这个基类，并根据不同的条件或参数来实例化对应的对象。
+ 该工厂只有一个函数，参数为店铺的类型，根据用户提供的类型来生产对应的店铺对象。
+ 可以根据不同的店铺类型，通过调用工厂的函数来获取相应的店铺对象。
 
-/*
- * 设计模式-工厂模式 Factory Mode
- * 顾名思义，工厂模式是用来生产对应的对象的。
- * 该工厂只有一个函数，参数为店铺的类型，可以根据用户提供的类型生产对应的店铺对象。
- */
+ 工厂模式的优点是可以隐藏实例化对象的具体过程，使得客户端代码更加简洁和可读。
+*/
 class ShopFactory : public AbstractFactory {
 public:
     Shop *createShop(string type);
@@ -97,9 +108,9 @@ public:
  */
 class shopCache{
 private:
-    map<Shop*,int> _shopMap; //原型模式所需的商店缓存数据池
+    map<Shop*,int> _shopMap; //  原型模式所需的商店数据缓存库
 public:
-    Shop* cloneShop(int shopID);//获取数据池中所缓存的店铺
+    Shop* cloneShop(int shopID);//  根据ID获取数据缓存库中的店铺
     void loadCache();// 预先设置缓存的函数
 };
 #endif //SOFTWAREARC_SHOPMANAGER_H
