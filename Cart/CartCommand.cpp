@@ -1,6 +1,4 @@
-//
-// Created by Frederick Mo on 2021/10/25.
-//
+
 
 #include "CartCommand.h"
 

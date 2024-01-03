@@ -1,6 +1,4 @@
-//
-// Created by Frederick Mo on 2021/10/25.
-//
+
 
 #ifndef CART_CARTCOMMAND_H
 #define CART_CARTCOMMAND_H

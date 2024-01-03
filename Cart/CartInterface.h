@@ -1,6 +1,4 @@
-//
-// Created by liruijie666 on 2021/10/31.
-//
+
 
 #ifndef DESIGNPATTERN_2021_CARTINTERFACE_H
 #define DESIGNPATTERN_2021_CARTINTERFACE_H

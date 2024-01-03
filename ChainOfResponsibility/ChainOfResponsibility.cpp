@@ -1,6 +1,4 @@
-//
-// Created by liruijie666 on 2021/11/3.
-//
+
 #include "ChainOfResponsibility.h"
 
 void NormalLogger::writeLog(int level) {

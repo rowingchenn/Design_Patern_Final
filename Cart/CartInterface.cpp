@@ -1,6 +1,4 @@
-//
-// Created by liruijie666 on 2021/10/31.
-//
+
 #include "CartInterface.h"
 
 using namespace std;

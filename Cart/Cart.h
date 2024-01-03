@@ -1,6 +1,4 @@
-//
-// Created by Frederick Mo on 2021/10/21.
-//
+
 
 #ifndef SOFTWARE_DESIGN_PATTERNS_TASK_CART_H
 #define SOFTWARE_DESIGN_PATTERNS_TASK_CART_H
